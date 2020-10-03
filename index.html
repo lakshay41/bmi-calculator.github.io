@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Body Mass Index</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+	body
+	{
+		font-family: Impact, fantasy;
+		background-color: black;
+	}
+	 .main
+	{
+		background-image: url('bmi-image.jpg');
+		height: 400px;
+		width: 100%;
+		padding-top:250px;
+		background-size: cover;
+
+	}
+	table
+	{
+		font-family: normal;
+		border:1px solid white;
+		width: 100%;
+	}
+	th,td
+	{
+		font-family: normal;
+		border:1px solid white;
+	}
+	#message
+	{
+		font-family: normal;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		color: #FF7F50
+	}
+</style>
+<body>
+      <div class="main">
+      		<h1 style="color: #FF7F50" class="text-center">BODY MASS INDEX</h1>
+      	</div>
+      	<div class="container-fluid text-white">
+      		<div class="row">
+      			<div class="col-12 col-sm-12 col-md-4 col-lg-4 text-center" style="padding-top: 100px;padding-bottom: 40px;">
+      				<table>
+      					<tr>
+      						<td colspan="2" style="font-size: 1.5em">BODY MASS INDEX TABLE</td>
+      					</tr>
+      					<tr style="font-size: 1.1em">
+      						<td>Classification</td>
+      						<td>BMI Score</td>
+      					</tr>
+      					<tr id="under">
+      						<td>Underweight</td>
+      						<td><18.5</td>
+      					</tr>
+      					<tr id="nor">
+      						<td>Normal</td>
+      						<td>18.5-24.9</td>
+      					</tr>
+      					<tr id="over">
+      						<td>Overweight</td>
+      						<td>25.0-29.0</td>
+      					</tr>
+      					<tr id="obe">
+      						<td>Obese</td>
+      						<td>30.0-40.0</td>
+      					</tr>
+      					<tr id="eobe">
+      						<td>Extreme Obese</td>
+      						<td>>40.0</td>
+      					</tr>
+      				</table>
+      			</div>
+      			<div class="col-sm-12 col-12 col-lg-8 col-md-8" style="padding-top: 50px;padding-bottom: 50px;">
+      				<form>
+      					<div class="form-group">
+      						<label for="weight">Weight:</label>
+      						<input type="text" class="form-control" id="weight" placeholder="Enter Your Weight In Kg" onkeyup="back()">
+      						<small id="validation" class="text-danger"></small>
+      					</div>
+      					<div class="form-group">
+      						<label for="height">Height:</label>
+      						<input type="text" class="form-control" id="height" placeholder="Enter Your Height In Ft" onkeyup="back()">
+      						<small id="validation1" class="text-danger"></small>
+      					</div>
+      					<div class="form-group">
+      						<label for="bmi">BMI:</label>
+      						<input type="text" class="form-control" id="bmi" placeholder="Your BMI">
+      					</div>
+      				</form><br>
+      				<div>
+      					<button class="btn btn-danger w-50" style="margin-left: 25%" onclick="myfunc()">Check</button>
+      				</div>
+      			</div>
+      			
+      		</div>
+      	</div>
+      	<div class="container-fluid text-white text-center" >
+      		<div class="container">
+      			<h3 id="message"></h3>
+      		</div>
+      	</div>
+       
+   <script>
+   	function myfunc()
+   	{
+   		var wi=document.getElementById('weight').value;
+   		var hi=document.getElementById('height').value;
+   		var wilen=wi.length;
+   		var hilen=hi.length;
+  
+   		if(wi==""&&hi!="")
+   		{
+   			document.getElementById('validation').innerHTML="Please fill this field out.";
+   			document.getElementById('validation1').innerHTML="";
+   		}
+   		else if(hi==""&&wi!="")
+   		{
+   			document.getElementById('validation1').innerHTML="Please fill this field out.";
+   			document.getElementById('validation').innerHTML="";
+   		}
+   		if(wi=="")
+   		{
+   			document.getElementById('validation').innerHTML="Please fill this field out.";
+   		}
+   		else if(hi=="")
+   		{
+   			document.getElementById('validation1').innerHTML="Please fill this field out.";
+   		}
+   		else if(wilen>3&&hilen<=3)
+   		{
+
+   			document.getElementById('validation').innerHTML="Please fill correct value.";
+   			document.getElementById('validation1').innerHTML="";
+   		}
+   		else if(wilen<=3&&hilen>3)
+   		{
+
+   			document.getElementById('validation1').innerHTML="Please fill correct value.";
+   			document.getElementById('validation').innerHTML="";
+   		}
+   		else if(wilen>3)
+   		{
+   			document.getElementById('validation').innerHTML="Please fill correct value.";
+   		}
+   		else if(hilen>3)
+   		{
+   			document.getElementById('validation1').innerHTML="Please fill correct value.";
+   		}
+   		else
+   		{
+   			document.getElementById('validation').innerHTML="";
+   			document.getElementById('validation1').innerHTML="";
+   			var newhi=0;
+   		var newbmi;
+   		hi=hi*0.3048;
+   		newhi=newhi+Math.pow(hi,2);
+   		newbmi=wi/newhi;
+   		newbmi=Math.round(newbmi);
+   		document.getElementById('bmi').value=newbmi;
+   		if(newbmi<18.5)
+   		{
+   			document.getElementById('under').style.backgroundColor="red";
+   			document.getElementById('message').innerHTML="Welcome To the Fitness World, Your BMI is "+newbmi+" . You can join our Gym to gain weight with diet plans prepared by our experts."
+   		}
+   		else if(newbmi>=18.5&&newbmi<=24.9)
+   		{
+   			document.getElementById('nor').style.backgroundColor="grey";
+   			document.getElementById('message').innerHTML="Welcome To the Fitness World, Your BMI is "+newbmi+" . You can join our Gym to gain abs to impress girls."
+   		}
+
+   		else if(newbmi>=25&&newbmi<=29)
+   		{
+   			document.getElementById('over').style.backgroundColor="red";
+   			document.getElementById('message').innerHTML="Welcome To the Fitness World, Your BMI is "+newbmi+" . You can join our Gym to loose weight and show to world what you can do."
+   		}
+   		else if(newbmi>=30&&newbmi<=40)
+   		{
+   			document.getElementById('obe').style.backgroundColor="red";
+   			document.getElementById('message').innerHTML="Welcome To the Fitness World, Your BMI is "+newbmi+" .You consult to a doctor and join our Gym to loose weight and get trained under our expert team."
+   		}
+   		else if(newbmi>40)
+   		{
+   			document.getElementById('eobe').style.backgroundColor="red";
+   			document.getElementById('message').innerHTML="Welcome To the Fitness World, Your BMI is "+newbmi+" .You imidiately consult to a doctor and join our Gym to loose weight and get trained under our expert team."
+   		}
+
+   		}
+
+   	}
+   	function back()
+   	{
+   		document.getElementById('under').style.backgroundColor="black";
+   		document.getElementById('nor').style.backgroundColor="black";
+   		document.getElementById('over').style.backgroundColor="black";
+   		document.getElementById('obe').style.backgroundColor="black";
+   		document.getElementById('eobe').style.backgroundColor="black";
+   		document.getElementById('message').innerHTML="";
+   		document.getElementById('bmi').value="";
+
+
+   	}
+   </script>
+
+</body>
+</html>
