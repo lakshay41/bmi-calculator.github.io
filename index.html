@@ -137,13 +137,13 @@
    		{
    			document.getElementById('validation1').innerHTML="Please fill this field out.";
    		}
-   		else if(wilen>3&&hilen<=3)
+   		else if(wilen>3&&hilen<=4)
    		{
 
    			document.getElementById('validation').innerHTML="Please fill correct value.";
    			document.getElementById('validation1').innerHTML="";
    		}
-   		else if(wilen<=3&&hilen>3)
+   		else if(wilen<=3&&hilen>4)
    		{
 
    			document.getElementById('validation1').innerHTML="Please fill correct value.";
@@ -153,10 +153,28 @@
    		{
    			document.getElementById('validation').innerHTML="Please fill correct value.";
    		}
-   		else if(hilen>3)
+   		else if(hilen>4)
    		{
    			document.getElementById('validation1').innerHTML="Please fill correct value.";
    		}
+         else if(!isNaN(hi)&&isNaN(wi))
+         {
+            document.getElementById('validation').innerHTML="Characters not allowed.";
+            document.getElementById('validation1').innerHTML="";
+         }
+         else if(isNaN(hi)&&!isNaN(wi))
+         {
+            document.getElementById('validation1').innerHTML="Characters not allowed.";
+            document.getElementById('validation').innerHTML="";
+         }
+         else if(isNaN(hi))
+         {
+            document.getElementById('validation').innerHTML="Characters not allowed.";
+         }
+         else if(isNaN(wi))
+         {
+            document.getElementById('validation1').innerHTML="Characters not allowed.";
+         }
    		else
    		{
    			document.getElementById('validation').innerHTML="";
